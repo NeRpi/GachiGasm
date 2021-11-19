@@ -1,5 +1,6 @@
 ﻿using BLL.Services;
-using DAL.Entities;
+
+namespace MangaLibParser;
 
 public class Program
 {
@@ -15,10 +16,8 @@ public class Program
 
         manager.AddNewManga(testManga); */
 
-        foreach (var manga in manager.GetAll())
-        {
-            Console.WriteLine(manga.Name);
-            Console.WriteLine(manga.Description);
-        }
+        var parser = new Parser();
+        var mainTask = parser.GetMangas();
+        Task.WaitAll(mainTask);
     }
 }
