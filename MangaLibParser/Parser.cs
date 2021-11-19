@@ -79,9 +79,11 @@ public class Parser
         manga.ReleaseYear = int.Parse(page.QuerySelector("span.elem_year > a")?.TextContent ?? "-1");
         manga.Type = page.QuerySelector("span.elem_category > a")?.TextContent;
         manga.Rating = float.Parse(page.QuerySelector("span.rating-block")?.GetAttribute("data-score")?.Replace('.', ',') ?? "0");
-        
+        manga.ImageSrc = page.QuerySelector("div.picture-fotorama > img")?.GetAttribute("src");
+
         Console.WriteLine("------------");
         Console.WriteLine(manga.Name);
+        Console.WriteLine(manga.ImageSrc);
         Console.WriteLine(manga.Rating);
         Console.WriteLine(manga.ReleaseYear);
         Console.WriteLine(manga.Type);
