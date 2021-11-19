@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GachiGasm", "GachiGasm\Gach
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{FFFB741A-619E-4878-8D05-7631D29A0078}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{1566E2DB-AF42-449D-AEB5-3E3D500E8733}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangaLibParser", "MangaLibParser\MangaLibParser.csproj", "{A3DA19F2-E09F-41E5-8635-91B8A5757CCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FFFB741A-619E-4878-8D05-7631D29A0078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFFB741A-619E-4878-8D05-7631D29A0078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFFB741A-619E-4878-8D05-7631D29A0078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1566E2DB-AF42-449D-AEB5-3E3D500E8733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1566E2DB-AF42-449D-AEB5-3E3D500E8733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1566E2DB-AF42-449D-AEB5-3E3D500E8733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1566E2DB-AF42-449D-AEB5-3E3D500E8733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DA19F2-E09F-41E5-8635-91B8A5757CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DA19F2-E09F-41E5-8635-91B8A5757CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DA19F2-E09F-41E5-8635-91B8A5757CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DA19F2-E09F-41E5-8635-91B8A5757CCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
