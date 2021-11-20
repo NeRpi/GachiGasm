@@ -9,16 +9,19 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 
 using DAL.Entities;
+using BLL.Services;
 
 namespace MangaLibParser;
 
 public class Parser
 {
     private readonly Request _request;
+    private readonly MangaManager _manager;
 
     public Parser()
     {
         _request = new Request();
+        _manager = new MangaManager();
     }
 
     public IHtmlDocument BasePage => _request.GetHtmlDocumentAsync(Options.baseUrl).Result;
@@ -38,21 +41,26 @@ public class Parser
         return 0;
     }
 
-    public async Task<IEnumerable<Manga>> GetMangas()
+    public async Task PopulateMangasTable()
     {
         var pageCount = GetPageCount();
         var pageLink = @"https://readmanga.io/list?sortType=POPULARITY&offset=";
         var pageSize = 70;
-        var pageTasks = new List<Task<IEnumerable<Manga>>>();
-
+        var mangas = new List<Manga>();
         for (int page = 0; page < pageCount; page++)
         {
             var nextPage = pageLink + (pageSize * page).ToString();
             Console.WriteLine($"Next page: {nextPage}");
-            var mangas = await GetPageMangas(nextPage);
+            mangas = mangas.Concat((await GetPageMangas(nextPage))).ToList();
+
+            if (page % 10 == 0)
+            {
+                _manager.AddNewMangas(mangas);
+                mangas.Clear();
+            }
         }
 
-        return null;
+        _manager.AddNewMangas(mangas);
     }
 
     public async Task<IEnumerable<Manga>> GetPageMangas(string pageUrl)
@@ -80,14 +88,10 @@ public class Parser
         manga.Type = page.QuerySelector("span.elem_category > a")?.TextContent;
         manga.Rating = float.Parse(page.QuerySelector("span.rating-block")?.GetAttribute("data-score")?.Replace('.', ',') ?? "0");
         manga.ImageSrc = page.QuerySelector("div.picture-fotorama > img")?.GetAttribute("src");
-
-        Console.WriteLine("------------");
-        Console.WriteLine(manga.Name);
-        Console.WriteLine(manga.ImageSrc);
-        Console.WriteLine(manga.Rating);
-        Console.WriteLine(manga.ReleaseYear);
-        Console.WriteLine(manga.Type);
-        Console.WriteLine(manga.Description);
+        manga.Genres = page.All
+            .Where(m => m.LocalName == "span" && m.GetAttribute("class") == "elem_genre ")
+            .Select(i => new Genre(i.TextContent.Trim(new char[] { ' ', ',' })))
+            .ToList();
 
         return manga;
 

@@ -20,6 +20,7 @@ public class EFRepository<T> : IRepository<T> where T : class
     }
 
     public void Create(T item) => _table.Add(item);
+    public void CreateRange(IEnumerable<T> items) => _table.AddRange(items);
     public void SaveChanges() => _context.SaveChanges();
 }
 

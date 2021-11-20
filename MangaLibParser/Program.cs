@@ -17,7 +17,7 @@ public class Program
         manager.AddNewManga(testManga); */
 
         var parser = new Parser();
-        var mainTask = parser.GetMangas();
+        var mainTask = parser.PopulateMangasTable();
         Task.WaitAll(mainTask);
     }
 }

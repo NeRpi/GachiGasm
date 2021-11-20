@@ -7,13 +7,13 @@ namespace DAL.Contexts.SQLServer
     {
         public SQLServerContext()
         {
-            // Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=labirint;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=Manga;Trusted_Connection=True;");
         }
 
         public DbSet<Manga> Mangas { get; set; } 

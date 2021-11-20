@@ -19,6 +19,14 @@ public class MangaManager
         _repository.SaveChanges();
     }
 
+    public void AddNewMangas(IEnumerable<Manga> mangas)
+    {
+        _repository.CreateRange(mangas);
+        _repository.SaveChanges();
+
+        Console.WriteLine($"{mangas.Count()} rows saved.");
+    }
+
     public IEnumerable<Manga> GetAll()
     {
         return _repository.GetAll();
