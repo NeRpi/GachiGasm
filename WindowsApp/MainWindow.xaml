@@ -50,7 +50,7 @@
                              Style="{StaticResource MenuButtonTheme}" />
             </WrapPanel>
             <ScrollViewer Grid.Row="1">
-                <WrapPanel Name="mangaview"/>
+                <WrapPanel Name="mangaView"/>
             </ScrollViewer>
         </Grid>
     </Border>

@@ -10,7 +10,7 @@ public class MangaManager
 
     public MangaManager()
     {
-        _repository = new EFRepository<Manga>(new SQLServerContext());
+        _repository = new MangaRepository(new SQLServerContext());
     }
 
     public void AddNewManga(Manga manga)

@@ -13,22 +13,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindowsApp.MVVM.View;
+using BLL.Services;
+
 
 namespace WindowsApp
 {
     public partial class MainWindow : Window
     {
+        private readonly MangaManager mangaManager;
         public MainWindow()
         {
             InitializeComponent();
             
-            for (int i = 0; i < 10; i++) {
-                ManBlock man = new();
-                man.Image.ImageSource = new BitmapImage(new Uri("https://staticrm.rmr.rocks/uploads/pics/01/71/113_o.jpg", UriKind.Absolute));
-                man.Name.Text = "Стальной алхимик";
-                man.Genres.Text = "боевик экшен";
-                man.Star.Text = "4.74";
-                mangaview.Children.Add(man);
+            mangaManager = new MangaManager();
+            int page = 1;
+            int pageSize = 10;
+            
+            foreach (var manga in mangaManager.GetAll().Skip(pageSize * (page - 1)).Take(pageSize))
+            {
+                ManBlock manBlock = new();
+                manBlock.Image.ImageSource = new BitmapImage(new Uri(manga?.ImageSrc, UriKind.Absolute));
+                manBlock.Name.Text = manga.Name;
+
+                foreach (var genre in manga.Genres)
+                {
+                    manBlock.Genres.Text += genre.Name + " ";
+                }
+
+                manBlock.Star.Text = manga.Rating?.ToString();
+                mangaView.Children.Add(manBlock);
             }
         }
     }
