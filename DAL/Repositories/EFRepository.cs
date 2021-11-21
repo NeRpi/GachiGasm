@@ -1,9 +1,8 @@
-﻿using DAL.Contexts.SQLServer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories;
 
-public class EFRepository<T> : IRepository<T> where T : class
+public abstract class EFRepository<T> where T : class
 {
     protected readonly DbContext _context;
     protected readonly DbSet<T> _table;
@@ -14,13 +13,9 @@ public class EFRepository<T> : IRepository<T> where T : class
         _table = context.Set<T>();
     }
 
-    public IEnumerable<T> GetAll()
-    {
-        return _table.ToList();
-    }
-
-    public void Create(T item) => _table.Add(item);
-    public void CreateRange(IEnumerable<T> items) => _table.AddRange(items);
-    public void SaveChanges() => _context.SaveChanges();
+    public virtual IEnumerable<T> GetAll() => _table;
+    public virtual void Create(T item) => _table.Add(item);
+    public virtual void CreateRange(IEnumerable<T> items) => _table.AddRange(items);
+    public virtual void SaveChanges() => _context.SaveChanges();
 }
 
