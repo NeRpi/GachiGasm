@@ -1,13 +1,4 @@
 ﻿using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Globalization;
-using System.Text.RegularExpressions;
-
 using DAL.Entities;
 using BLL.Services;
 

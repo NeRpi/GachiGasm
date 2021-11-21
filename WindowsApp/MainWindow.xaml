@@ -51,6 +51,7 @@
                              FontSize="20"
                              Style="{StaticResource MenuButtonTheme}" />
             </WrapPanel>
+
             <ScrollViewer Grid.Row="1" Background="MistyRose" x:Name="Scroller">
                 <WrapPanel x:Name="mangaview">
                 </WrapPanel>
