@@ -20,6 +20,7 @@ namespace WindowsApp
     public partial class MainWindow : Window
     {
         private const int pageSize = 20;
+        int currentPage = 1;
 
         private readonly MangaManager _manager;
         public MainWindow()
@@ -47,6 +48,27 @@ namespace WindowsApp
                 mangaview.Children.Add(man);
             }
             return true;
+        }
+
+        private void ShowNextPage(object sender, RoutedEventArgs e)
+        {
+            currentPage++;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+
+            currentPage = mainWindow.TryShowItems(currentPage) ? currentPage : currentPage - 1;
+        }
+
+        private void ShowPrevPage(object sender, RoutedEventArgs e)
+        {
+            if (currentPage <= 1)
+            {
+                return;
+            }
+
+            currentPage--;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+
+            currentPage = mainWindow.TryShowItems(currentPage) ? currentPage : currentPage + 1;
         }
     }
 }

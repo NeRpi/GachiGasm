@@ -55,11 +55,17 @@
                 <WrapPanel x:Name="mangaview">
                 </WrapPanel>
             </ScrollViewer>
-            <StackPanel  Grid.Row="2" Background="Orange" 
-                         Opacity="0.8" Orientation="Horizontal">
-                <v:PageButton Content="1" HorizontalAlignment="Center"/>
-                <v:PageButton Content="2" HorizontalAlignment="Center"/>
-            </StackPanel>
+            <Grid Grid.Row="2" Background="Orange" 
+                  Opacity="0.8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" ButtonBase.Click="ShowPrevPage" 
+                        Background="Transparent"/>
+                <Button Grid.Column="1" ButtonBase.Click="ShowNextPage"
+                        Background="Transparent"/>
+            </Grid>
         </Grid>
     </Border>
 </Window>
