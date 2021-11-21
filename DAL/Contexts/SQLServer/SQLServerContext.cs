@@ -7,7 +7,6 @@ namespace DAL.Contexts.SQLServer
     {
         public SQLServerContext()
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

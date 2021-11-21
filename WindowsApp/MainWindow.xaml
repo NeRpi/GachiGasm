@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:WindowsApp"
         xmlns:v="clr-namespace:WindowsApp.MVVM.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="920">
-    <Border Background="White" CornerRadius="30">
+        Title="MainWindow" Height="650" Width="920"
+        Name="MainMangaWindow">
+    <Border Background="White" CornerRadius="30"
+            Name="MenuItem">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50">
-                </RowDefinition>
-                <RowDefinition />
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
             <WrapPanel Grid.Row="0" Background="#FF8506" Grid.ColumnSpan="2">
@@ -49,9 +51,15 @@
                              FontSize="20"
                              Style="{StaticResource MenuButtonTheme}" />
             </WrapPanel>
-            <ScrollViewer Grid.Row="1">
-                <WrapPanel Name="mangaview"/>
+            <ScrollViewer Grid.Row="1" Background="MistyRose" x:Name="Scroller">
+                <WrapPanel x:Name="mangaview">
+                </WrapPanel>
             </ScrollViewer>
+            <StackPanel  Grid.Row="2" Background="Orange" 
+                         Opacity="0.8" Orientation="Horizontal">
+                <v:PageButton Content="1" HorizontalAlignment="Center"/>
+                <v:PageButton Content="2" HorizontalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>
