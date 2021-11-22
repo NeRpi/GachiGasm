@@ -31,7 +31,7 @@
                 </Button>
                 <Button x:Name="UpdateButton"
                         Width="40" Height="40" HorizontalAlignment="Right"
-                        BorderBrush="Black" BorderThickness="2" Opacity="1"
+                        BorderBrush="Black" BorderThickness="2" Opacity="1" Click="UpdateMode"
                         >
                     <Button.Background>
                         <ImageBrush ImageSource="D:\Kursach\GachiGasm\WindowsApp\Images\2.png"
@@ -62,8 +62,8 @@
                          Foreground="White"
                          IsReadOnly="True"
                          FontSize="15"  
-                         
-                         BorderBrush="Transparent"/>
+                         BorderBrush="Transparent"
+                             KeyDown="UpdateItem"/>
 
                     <TextBox x:Name="Genres"
                          Grid.Column="0"
@@ -74,7 +74,8 @@
                          FontSize="13"
                          IsReadOnly="True"
                          Margin="3 0 0 0"
-                         BorderBrush="Transparent"/>
+                         BorderBrush="Transparent"
+                             KeyDown="UpdateItem"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
@@ -88,7 +89,8 @@
                          Foreground="Chocolate"
                          FontSize="15"
                          IsReadOnly="True"
-                         BorderBrush="Transparent"/>
+                         BorderBrush="Transparent"
+                             KeyDown="UpdateItem"/>
 
                     <Image Source="D:\Kursach\GachiGasm\WindowsApp\Images\Star.png"
                                Width="15" Height="15"/>

@@ -91,6 +91,12 @@ namespace WindowsApp
             _currentPageItems = _manager.GetAll();
             TryShowItems(1);
         }
+
+
+        public void UpdateManga(Manga manga)
+        {
+            _manager.Update(manga);
+        }
     }
 }
 
