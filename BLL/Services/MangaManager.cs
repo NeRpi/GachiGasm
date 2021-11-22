@@ -19,6 +19,12 @@ public class MangaManager
         _repository.SaveChanges();
     }
 
+    public void DelManga(Manga manga)
+    {
+        _repository.Delete(manga);
+        _repository.SaveChanges();
+    }
+
     public void AddNewMangas(IEnumerable<Manga> mangas)
     {
         _repository.CreateRange(mangas);
@@ -27,7 +33,13 @@ public class MangaManager
         Console.WriteLine($"{mangas.Count()} rows saved.");
     }
 
-    public IEnumerable<Manga> GetAll()
+    public void Update(Manga manga)
+    {
+        _repository.Update(manga);
+        _repository.SaveChanges();
+    }
+
+    public IQueryable<Manga> GetAll()
     {
         return _repository.GetAll();
     }

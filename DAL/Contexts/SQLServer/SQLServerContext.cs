@@ -6,7 +6,7 @@ namespace DAL.Contexts.SQLServer
     public class SQLServerContext : DbContext
     {
         public SQLServerContext()
-        {
+        { 
             Database.EnsureCreated();
         }
 

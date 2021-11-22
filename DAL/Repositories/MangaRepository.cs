@@ -7,12 +7,8 @@ public class MangaRepository : EFRepository<Manga>, IRepository<Manga>
 {
     public MangaRepository(DbContext context) : base(context) { }
 
-    public void Delete(Manga item)
-    {
-        throw new NotImplementedException();
-    }
 
-    public override IEnumerable<Manga> GetAll()
+    public override IQueryable<Manga> GetAll()
     {
         IQueryable<Manga> query = _table;
 
@@ -23,11 +19,6 @@ public class MangaRepository : EFRepository<Manga>, IRepository<Manga>
     public Manga GetById(int id)
     {
         return _table.FirstOrDefault(item => item.Id == id);
-    }
-
-    public void Update(Manga item)
-    {
-        throw new NotImplementedException();
     }
 }
 

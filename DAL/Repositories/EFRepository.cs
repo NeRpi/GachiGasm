@@ -15,6 +15,8 @@ public abstract class EFRepository<T> where T : class
 
     public virtual IEnumerable<T> GetAll() => _table;
     public virtual void Create(T item) => _table.Add(item);
+    public virtual void Delete(T item) => _table.Remove(item);
+    public virtual void Update(T item) => _table.Update(item);
     public virtual void CreateRange(IEnumerable<T> items) => _table.AddRange(items);
     public virtual void SaveChanges() => _context.SaveChanges();
 }

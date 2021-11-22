@@ -14,40 +14,47 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindowsApp.MVVM.View;
 using BLL.Services;
+using DAL.Entities;
 
 namespace WindowsApp
 {
     public partial class MainWindow : Window
     {
         private const int pageSize = 20;
-        int currentPage = 1;
+        public int currentPage = 1;
 
         private readonly MangaManager _manager;
+        private IQueryable<Manga> _currentPageItems;
+
         public MainWindow()
         {
             InitializeComponent();
 
             _manager = new();
+            _currentPageItems = _manager.GetAll();
 
             TryShowItems(1);
         }
 
         public bool TryShowItems(int page)
         {
-            if (page > _manager.GetAll().Count() / pageSize || page < 1)
+            if (page > Math.Ceiling(_currentPageItems.Count() / (pageSize + 0.0)) || page < 1)
                 return false;
 
-            mangaview.Children.Clear();
+            ShowMangas(_currentPageItems, page);
 
-            foreach (var manga in _manager.GetAll().Skip(pageSize * (page - 1)).Take(pageSize))
+            return true;
+        }
+
+        public void ShowMangas(IEnumerable<Manga> mangas, int page)
+        {
+            mangas = mangas.Skip(pageSize * (page - 1)).Take(pageSize);
+            mangaview.Children.Clear();
+            foreach (var manga in mangas)
             {
-                ManBlock man = new();
-                man.Image.ImageSource = new BitmapImage(new Uri(manga?.ImageSrc, UriKind.Absolute));
-                man.Name.Text = manga.Name;
-                man.Star.Text = manga.Rating.ToString();
+                ManBlock man = new(manga);
                 mangaview.Children.Add(man);
             }
-            return true;
         }
 
         private void ShowNextPage(object sender, RoutedEventArgs e)
@@ -65,10 +72,24 @@ namespace WindowsApp
                 return;
             }
 
+
             currentPage--;
             var mainWindow = Application.Current.MainWindow as MainWindow;
 
             currentPage = mainWindow.TryShowItems(currentPage) ? currentPage : currentPage + 1;
+        }
+
+        private void TypeMangi(object sender, RoutedEventArgs e)
+        {
+            string type = (sender as RadioButton).Content.ToString();
+            _currentPageItems = _manager.GetAll().Where(item => item.Type == type);
+            ShowMangas(_currentPageItems, 1);
+        }
+
+        private void ShowAll(object sender, RoutedEventArgs e)
+        {
+            _currentPageItems = _manager.GetAll();
+            TryShowItems(1);
         }
     }
 }

@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="920"
         Name="MainMangaWindow">
+    
     <Border Background="White" CornerRadius="30"
             Name="MenuItem">
         <Grid>
@@ -25,28 +26,32 @@
                        Margin="5,0,5,0"
                        FontSize="20"
                        Style="{StaticResource ModernTextBox}"/>
-
+                
                 <RadioButton Content="Манга"
                              Height="50"
                              Width="150"
                              Foreground="Wheat"
                              FontSize="20"
+                             Checked="TypeMangi"
                              Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton Content="Манхва"
                              Height="50"
                              Width="150"
                              Foreground="Wheat"
                              FontSize="20"
+                             Checked="TypeMangi"
                              Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton Content="Маньхуа"
                              Height="50"
                              Width="150"
                              Foreground="Wheat"
                              FontSize="20"
+                             Checked="TypeMangi"
                              Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton Content="Всё"
                              Height="50"
                              Width="100"
+                             Checked="ShowAll"
                              Foreground="Wheat"
                              FontSize="20"
                              Style="{StaticResource MenuButtonTheme}" />
@@ -56,6 +61,7 @@
                 <WrapPanel x:Name="mangaview">
                 </WrapPanel>
             </ScrollViewer>
+            
             <Grid Grid.Row="2" Background="Orange" 
                   Opacity="0.8">
                 <Grid.ColumnDefinitions>

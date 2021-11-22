@@ -15,12 +15,37 @@
         <Border.Background>
             <ImageBrush x:Name="Image" Viewbox="0.1 0 0.8 1" Stretch="Fill" />
         </Border.Background>
-
+        
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Top"
+                       Background="Black"
+                       Opacity="0.7">
+                <Button x:Name="DeletionButton"
+                        Width="40" Height="40" HorizontalAlignment="Right"
+                        BorderBrush="Black" BorderThickness="2" Opacity="1"
+                        ButtonBase.Click="Deletions">
+                    <Button.Background>
+                        <ImageBrush ImageSource="D:\Kursach\GachiGasm\WindowsApp\Images\2.png"
+                                    Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="UpdateButton"
+                        Width="40" Height="40" HorizontalAlignment="Right"
+                        BorderBrush="Black" BorderThickness="2" Opacity="1"
+                        >
+                    <Button.Background>
+                        <ImageBrush ImageSource="D:\Kursach\GachiGasm\WindowsApp\Images\2.png"
+                                    Stretch="Fill"/>
+                    </Button.Background>
+                </Button>
+                
+            </WrapPanel>
         <Border Background="Black" Opacity="0.85"
                     Canvas.Bottom="0" 
                     ClipToBounds="True" 
                     CornerRadius="5" 
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                DockPanel.Dock="Bottom">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -37,6 +62,7 @@
                          Foreground="White"
                          IsReadOnly="True"
                          FontSize="15"  
+                         
                          BorderBrush="Transparent"/>
 
                     <TextBox x:Name="Genres"
@@ -69,5 +95,6 @@
                 </StackPanel>
             </Grid>
         </Border>
+        </DockPanel>
     </Border>
 </UserControl>
